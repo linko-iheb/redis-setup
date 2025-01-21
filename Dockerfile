@@ -7,11 +7,11 @@ RUN apt-get update && apt-get install -y redis-server && rm -rf /var/lib/apt/lis
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json (if available)
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install npm dependencies
-RUN npm install
+RUN npm install express ioredis cors uuid
 
 # Copy the rest of the app
 COPY . .
@@ -19,6 +19,6 @@ COPY . .
 # Expose ports for both the backend server and Redis
 EXPOSE 3001 6379
 
-# Start Redis and the Node.js app
-CMD ["sh", "-c", "redis-server --daemonize yes && node server.js"]
+# Start Redis and the backend server
+CMD redis-server --daemonize yes && node server.js
 
