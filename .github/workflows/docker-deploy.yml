@@ -21,8 +21,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t your-username/your-repository-name:latest .
+          docker build -t houbalinko/redis-counter:latest .
 
       - name: Push Docker image to Docker Hub
         run: |
-          docker push your-username/your-repository-name:latest
+          docker push houbalinko/redis-counter:latest
